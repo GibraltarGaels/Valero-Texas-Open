@@ -1,137 +1,152 @@
-// Valero Texas Open Fundraiser Website for Gibraltar Gaels
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gibraltar Gaels - Valero Texas Open Fundraiser</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #c8102e;
+      text-align: center;
+    }
+    label {
+      font-weight: bold;
+    }
+    select, input[type="text"], input[type="email"] {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+    }
+    button {
+      background-color: #c8102e;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    .confirmation {
+      display: none;
+      margin-top: 20px;
+      color: green;
+      font-weight: bold;
+      text-align: center;
+    }
+    .payment {
+      background: #f2f2f2;
+      padding: 10px;
+      border-left: 5px solid #c8102e;
+      margin-top: 20px;
+    }
+    .description {
+      background-color: #f9f9f9;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-left: 5px solid #c8102e;
+    }
+  </style>
+</head>
+<body>
+  <h1>Valero Texas Open Fundraiser</h1>
+  <h2>Support the Gibraltar Gaels!</h2>
 
-import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectItem } from "@/components/ui/select";
+  <div class="description">
+    <p><strong>How it works:</strong></p>
+    <ul>
+      <li>Select <strong>one player from each of the five groups (A–E)</strong>.</li>
+      <li>Scoring is based on their performance throughout the Valero Texas Open.</li>
+      <li><strong>Points system:</strong></li>
+      <ul>
+        <li>1st in group = 5 pts</li>
+        <li>2nd in group = 4 pts</li>
+        <li>3rd = 3 pts</li>
+        <li>4th = 2 pts</li>
+        <li>5th = 1 pt</li>
+        <li>Missed cut = -1 pt</li>
+        <li>Picked the tournament winner = +5 bonus pts</li>
+        <li>Leader at the end of any round = +2 bonus pts</li>
+      </ul>
+      <li><strong>Entry Fee:</strong> €10 per person – winner takes all!</li>
+      <li><strong>In case of a tie</strong>, the prize will be split evenly.</li>
+    </ul>
+    <p>Submit your picks using the form below and don't forget to send your payment via Revolut. All proceeds go to supporting the Gibraltar Gaels GAA club!</p>
+  </div>
 
-const groupA = ["Ludvig Aberg", "Tommy Fleetwood", "Corey Conners", "Patrick Cantlay", "Hideki Matsuyama"];
-const groupB = ["Jordan Spieth", "Keegan Bradley", "Akshay Bhatia", "Denny Mccarthy", "Si Woo Kim"];
-const groupC = ["Keith Mitchell", "Tony Finau", "Daniel Berger", "Tom Kim", "Sam Burns"];
-const groupD = ["Samuel Stevens", "Bud Cauley", "Gary Woodland", "J.T. Poston", "Matt Fitzpatrick"];
-const groupE = [
-  "Jacob Bridgeman", "Jake Knapp", "Maverick McNealy", "Harry Hall", "Charley Hoffman",
-  "Ben Griffin", "Kurt Kitayama", "Andrew Novak", "Rickie Fowler", "Taylor Moore",
-  "Lee Hodges", "Patrick Rodgers", "Alex Smalley", "Brian Harman", "Ryan Fox",
-  "Justin Rose", "Chris Kirk", "Thorbjorn Olesen", "Ryan Gerard", "Matt Kuchar",
-  "Seamus Power", "Niklas Norgaard", "Beau Hossler", "Victor Perez", "Isaiah Salinda",
-  "Matt Wallace", "Tom Hoge", "Mac Meissner", "Sam Ryder", "Eric Cole",
-  "Jesper Svensson", "Cameron Young", "Andrew Putnam", "Max Mcgreevy", "Aldrich Potgieter",
-  "Michael Thorbjornsen", "Max Homa", "Doug Ghim", "Matthias Schmid", "Vince Whaley",
-  "Benjamin James", "Sami Valimaki", "Joel Dahmen", "Ben Martin", "Alejandro Tosti",
-  "Chan Kim",
-  // Additional players
-  "Anders Albertson", "Mason Andersen", "Aaron Baddeley", "Hayden Buckley", "Bronson Burgoon",
-  "Rafael Campos", "Frankie Capan III", "Ricky Castillo", "Will Chandler", "Austen Christiansen",
-  "Trevor Cone", "Vince Covello", "Quade Cummins", "Cristóbal Del Solar", "Erik van Rooyen",
-  "Chris Gotterup", "Ryo Hisatsune", "Rikuya Hoshino", "Martin Laird", "Nate Lashley",
-  "David Lipsky", "Justin Lower", "William Mouw", "Rory McIlroy", "Preston Summerhays",
-  "Adam Scott", "Brandt Snedeker", "Adam Svensson", "Braden Thornberry", "Jimmy Walker",
-  "Paul Waring", "Kevin Roy", "Danny Walker", "Jeremy Paul", "Hunter Logan",
-  "Matthew Riedel", "Thomas Rosenmueller", "Steven Fisk", "Peter Kuest", "Zach Johnson",
-  "J.J. Spaun", "Camilo Villegas"
-];
+  <form id="fundraiser-form">
+    <label for="name">Full Name</label>
+    <input type="text" id="name" name="name" required />
 
-export default function ValeroFundraiser() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    group1: "",
-    group2: "",
-    group3: "",
-    group4: "",
-    group5: "",
-  });
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required />
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+    <label for="groupA">Group A</label>
+    <select id="groupA" name="groupA" required></select>
 
-  const handleSelect = (name, value) => {
-    setForm({ ...form, [name]: value });
-  };
+    <label for="groupB">Group B</label>
+    <select id="groupB" name="groupB" required></select>
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("Entry submitted! Please complete payment via Revolut");
-  };
+    <label for="groupC">Group C</label>
+    <select id="groupC" name="groupC" required></select>
 
-  return (
-    <main className="p-4 max-w-2xl mx-auto text-center">
-      <h1 className="text-3xl font-bold mb-2 text-red-700">Valero Texas Open Fundraiser</h1>
-      <p className="text-sm text-gray-600 mb-4">Gibraltar Gaels GAA | €10 Entry | Winner Takes All</p>
+    <label for="groupD">Group D</label>
+    <select id="groupD" name="groupD" required></select>
 
-      <section className="mb-6">
-        <h2 className="text-xl font-semibold mb-2">Payment Info</h2>
-        <p>Send €10 entry via Revolut:</p>
-        <a href="https://revolut.me/killiavb3" className="text-red-600 underline font-medium" target="_blank">revolut.me/killiavb3</a>
-        <p className="mt-1 text-sm text-gray-500">Entry is only valid once payment is received.</p>
-      </section>
+    <label for="groupE">Group E</label>
+    <select id="groupE" name="groupE" required></select>
 
-      <section className="mb-6 text-left">
-        <h2 className="text-xl font-semibold mb-2 text-center">How It Works</h2>
-        <ol className="list-decimal pl-6 text-sm space-y-1">
-          <li>Pick one golfer from each of the five groups below.</li>
-          <li>Points awarded based on performance:
-            <ul className="list-disc pl-6">
-              <li>1st in group = 5 pts</li>
-              <li>2nd = 4 pts, 3rd = 3 pts, etc.</li>
-              <li>Missed cut = -1 pt</li>
-              <li>+5 pts for overall tournament winner</li>
-              <li>+2 pts for leading after any round</li>
-              <li>Ties split points</li>
-            </ul>
-          </li>
-          <li>Submit payment and form before Thursday tee-off.</li>
-        </ol>
-      </section>
+    <button type="submit">Submit Picks</button>
+  </form>
 
-      <Card className="mb-6">
-        <CardContent className="p-4 space-y-4">
-          <form onSubmit={handleSubmit}>
-            <Input
-              name="name"
-              placeholder="Full Name"
-              value={form.name}
-              onChange={handleChange}
-              required
-            />
-            <Input
-              name="email"
-              type="email"
-              placeholder="Email Address"
-              value={form.email}
-              onChange={handleChange}
-              required
-            />
+  <div class="payment">
+    <p><strong>Entry Fee:</strong> €10</p>
+    <p>Please pay via Revolut: <a href="https://revolut.me/killiavb3" target="_blank">revolut.me/killiavb3</a></p>
+    <p><em>Include your name in the payment reference!</em></p>
+  </div>
 
-            {[groupA, groupB, groupC, groupD, groupE].map((group, idx) => (
-              <Select
-                key={idx}
-                onValueChange={(val) => handleSelect(`group${idx + 1}`, val)}
-                required
-              >
-                <SelectItem value="">-- Select Group {String.fromCharCode(65 + idx)} pick --</SelectItem>
-                {group.map((player) => (
-                  <SelectItem key={player} value={player}>{player}</SelectItem>
-                ))}
-              </Select>
-            ))}
+  <div class="confirmation" id="confirmation-message">
+    Thank you! Your picks have been submitted.
+  </div>
 
-            <Button type="submit" className="mt-4 w-full">Submit Entry</Button>
-          </form>
-        </CardContent>
-      </Card>
+  <script>
+    const groupOptions = {
+      groupA: ["Ludvig Åberg", "Tommy Fleetwood", "Corey Conners", "Patrick Cantlay", "Jordan Spieth", "Hideki Matsuyama", "Akshay Bhatia", "Keegan Bradley", "Denny McCarthy", "Daniel Berger", "Si Woo Kim", "Tony Finau", "Keith Mitchell", "Tom Kim", "Sam Burns", "Samuel Stevens", "Bud Cauley", "Gary Woodland", "J.T. Poston"],
+      groupB: ["Jake Knapp", "Maverick McNealy", "Harry Hall", "Kurt Kitayama", "Andrew Novak", "Rickie Fowler", "Taylor Moore", "Lee Hodges", "Patrick Rodgers", "Alex Smalley", "Brian Harman", "Ryan Fox", "Justin Rose", "Chris Kirk", "Thorbjørn Olesen", "Ryan Gerard", "Matt Kuchar", "Seamus Power", "Niklas Nørgaard"],
+      groupC: ["Victor Perez", "Isaiah Salinda", "Matt Wallace", "Tom Hoge", "Mac Meissner", "Sam Ryder", "Eric Cole", "Jesper Svensson", "Cameron Young", "Andrew Putnam", "Max McGreevy", "Aldrich Potgieter", "Michael Thorbjornsen", "Max Homa", "Doug Ghim", "Matthias Schmid", "Vince Whaley"],
+      groupD: ["William Mouw", "Rory McIlroy", "Preston Summerhays", "Adam Scott", "Brandt Snedeker", "Adam Svensson", "Braden Thornberry", "Jimmy Walker", "Paul Waring", "Kevin Roy", "Danny Walker", "Jeremy Paul", "Hunter Logan", "Matthew Riedel", "Thomas Rosenmueller", "Steven Fisk", "Peter Kuest", "Zach Johnson", "J.J. Spaun"],
+      groupE: ["Benjamin James", "Sami Välimäki", "Joel Dahmen", "Ben Martin", "Alejandro Tosti", "Chan Kim", "Anders Albertson", "Mason Andersen", "Aaron Baddeley", "Hayden Buckley", "Bronson Burgoon", "Rafael Campos", "Frankie Capan III", "Ricky Castillo", "Will Chandler", "Austen Christiansen", "Trevor Cone", "Vince Covello", "Quade Cummins", "Cristóbal Del Solar", "Erik van Rooyen", "Chris Gotterup", "Ryo Hisatsune", "Rikuya Hoshino", "Martin Laird", "Nate Lashley", "David Lipsky", "Justin Lower"]
+    };
 
-      <section className="mb-10">
-        <h2 className="text-xl font-semibold mb-2">Live Leaderboard</h2>
-        <iframe
-          src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRANDOMEXAMPLEURL/pubhtml?widget=true&amp;headers=false"
-          className="w-full h-[600px] border"
-          title="Valero Leaderboard"
-        ></iframe>
-      </section>
-    </main>
-  );
-}
+    for (const group in groupOptions) {
+      const select = document.getElementById(group);
+      groupOptions[group].forEach(player => {
+        const option = document.createElement("option");
+        option.value = player;
+        option.textContent = player;
+        select.appendChild(option);
+      });
+    }
+
+    document.getElementById("fundraiser-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
+        method: "POST",
+        body: formData
+      })
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("confirmation-message").style.display = "block";
+        document.getElementById("fundraiser-form").reset();
+      })
+      .catch(error => console.error("Error!", error.message));
+    });
+  </script>
+</body>
+</html>
